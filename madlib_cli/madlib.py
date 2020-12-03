@@ -9,9 +9,7 @@ def read_File(file_path):
     reader = open(file_path,'r')
     content = reader.read()
     reader.close()
-    # rawContent = re.sub('\{(.*?)\}', '{}', content)
-    # print(rawContent)
-    # print(reader.closed)
+
     return content
 
 
@@ -29,7 +27,8 @@ def user_input(content):
     
 def merge_content(content,answers):
     rawContent = raw_Content(content)
-    gamerText=rawContent.format(answers[0],answers[1],answers[2],answers[3],answers[4],answers[5],answers[6],answers[7],answers[8],answers[9],answers[10],answers[11],answers[12],answers[13],answers[14],answers[15],answers[16],answers[17],answers[18],answers[19],answers[20])
+    # gamerText=rawContent.format(answers[0],answers[1],answers[2],answers[3],answers[4],answers[5],answers[6],answers[7],answers[8],answers[9],answers[10],answers[11],answers[12],answers[13],answers[14],answers[15],answers[16],answers[17],answers[18],answers[19],answers[20])
+    gamerText=rawContent.format(*answers)
     return gamerText
 
 def create_file(content):
@@ -44,6 +43,8 @@ def raw_Content(content):
 The Main Method where its control the whole function in this lab 
 """
 
+
+
 if __name__ == "__main__":
 
     # Welcome msg appear to the user and this msg can be changed 
@@ -54,10 +55,12 @@ if __name__ == "__main__":
 
     file_path="assets/Game.txt"
     content = read_File(file_path)
-    print(content)
-
     #Take The Input from the user 
     answers=user_input(content)
     gamerText=merge_content(content,answers)
     create_file(gamerText)
+
+    output_file_path="assets/GameResult.txt"
+    output_content = read_File(output_file_path)
+    print(output_content)
 
